@@ -23,14 +23,10 @@ Weasel ....
 #### Installation
 ```
 sudo apt update
-```
-```
 sudo apt-get install nmap ///Ignore this if nmap is already installed///
 ```
 ```
 git clone git@github.com:iamramahibrah/weasel.git
-```
-```
 cd weasel
 ```
 
