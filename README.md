@@ -35,5 +35,9 @@ cd weasel
 ````
     ./weasel [options] -Help
              --css-injection  | Scan CSS Injection Vulnerability
+             --cve-scanner    |  Scan for Common Vulnerability Exposure *NOTE: scan all vulnerabilities available in target*
+             --xss-vuln       |  XSS Vulnerability scanning 
+
+
 ````
 
