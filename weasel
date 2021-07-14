@@ -38,7 +38,8 @@ function help()
 
           --css-injection     |  Scan for CSS Injection Vulnerability
           --cve-scanner       |  Scan for Common Vulnerability Exposure *NOTE: scan all vulnerabilities available in target*
-          --xss-vuln          |  XSS Vulnerability scanning "
+          --xss-vuln          |  XSS Vulnerability scanning 
+          --heartbleed        |  Scan for SSL-Heartbleed Vulnerability"
 }
 
 function css()
@@ -111,6 +112,30 @@ fi
 
 
 
+
+function heart()
+{
+  echo -e "
+
+  [+] \e[33;1m HEARTBLEED VULNERABILITY SCANNER \e[0m
+           Powered by nmap
+                      \e[1;32m****\e[0m"
+  echo
+  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
+  read host
+ping -c1 -W1 -q $host &>/dev/null
+status=$( echo $? )
+if [[ $status == 0 ]] ; then
+    echo -e " $host .... [\e[1;32m Connected\e[0m] "
+    echo -e "$YELLOW scanning $host for heartbleed vulnerabilities $NOCOLOR"
+    sleep 1s
+    nmap -d --script ssl-heartbleed --script-args vulns.showall -sV  $host
+else
+   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
+fi
+}
+
+
 while [ $# -gt 0 ]; do
   case "$1" in
     -Help)
@@ -124,6 +149,9 @@ while [ $# -gt 0 ]; do
       ;;
     --xss-vuln)
       xss-par
+      ;;
+    --heartbleed)
+      heart
       ;;
 
     *)
