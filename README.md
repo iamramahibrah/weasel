@@ -15,7 +15,7 @@ Weasel ....
 - CSS Injection Vulnerability scanner
 - XSS Vulnerability scanner
 - CVE Vulnerability Scanner
-- TLS/SSL Vulnerability Scanner
+- Heartbleed Vulnerability Scanner
 - Services and Version scan
 - Detect WAF
 - Hosts Discovery
