@@ -38,6 +38,7 @@ cd weasel
              --cve-scanner    |  Scan for Common Vulnerability Exposure *NOTE: scan all vulnerabilities available in target*
              --xss-vuln       |  XSS Vulnerability scanning 
              --heartbleed     |  Scan Heartbleed vulnerability
+             --services       |  Scan for Services and Versions 
 
 
 ````
