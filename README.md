@@ -7,6 +7,8 @@
 ![os](https://img.shields.io/badge/OS-Linux-yellow.svg)
 ![language](https://img.shields.io/badge/bash-5.1.4(1)%2B-blue.svg)
 ![raccoonver](https://img.shields.io/badge/version-0.1-lightgrey.svg)
+[![made-with-bash](https://img.shields.io/badge/Made%20with-bash-1f425f.svg)](http://golang.org)
+
 #### About
 Weasel ....
 
