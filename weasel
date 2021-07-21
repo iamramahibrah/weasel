@@ -40,7 +40,8 @@ function help()
           --cve-scanner       |  Scan for Common Vulnerability Exposure *NOTE: scan all vulnerabilities available in target*
           --xss-vuln          |  XSS Vulnerability scanning 
           --heartbleed        |  Scan for SSL-Heartbleed Vulnerability
-          --services          |  Scan for Services and Versions "
+          --services          |  Scan for Services and Versions
+          --waf               |  Scan for Web Application Firewall(WAF) "
 }
 
 function css()
@@ -160,6 +161,28 @@ else
 fi
 }
 
+waf()
+{
+  echo -e "
+
+  [+] \e[33;1m WEB APPLICATION FIREWALL \e[0m
+           Powered by nmap
+                      \e[1;32m****\e[0m"
+  echo
+  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
+  read host
+ping -c1 -W1 -q $host &>/dev/null
+status=$( echo $? )
+if [[ $status == 0 ]] ; then
+    echo -e " $host .... [\e[33;1m Connected \e[0m ] "
+    echo -e " scanning \e[33;1m $host  \e[0m  for WAF \e[0m"
+    sleep 1s
+    sudo wafw00f $host
+else
+   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
+fi
+}
+
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -180,6 +203,9 @@ while [ $# -gt 0 ]; do
       ;;
     --services)
       serv
+      ;;
+    --waf)
+      waf
       ;;
 
     *)
