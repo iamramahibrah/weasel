@@ -41,6 +41,8 @@ cd weasel
              --xss-vuln       |  XSS Vulnerability scanning 
              --heartbleed     |  Scan Heartbleed vulnerability
              --services       |  Scan for Services and Versions 
+             --hostdiscover   |  Get Hosts in network 
+
 
 
 ````
