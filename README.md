@@ -27,6 +27,9 @@ git clone git@github.com:iamramahibrah/weasel.git
 cd weasel
 python3 install.py
 ```
+#### Tools 
+- Nmap
+- Netdiscover
 
 #### Usage
 
