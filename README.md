@@ -9,8 +9,6 @@
 ![raccoonver](https://img.shields.io/badge/version-0.1-lightgrey.svg)
 [![made-with-bash](https://img.shields.io/badge/Made%20with-bash-1f425f.svg)](http://golang.org)
 
-#### About
-Weasel ....
 
 #### Features
 
