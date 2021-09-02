@@ -47,7 +47,8 @@ function help()
 
 function css()
 {
-  echo -e "
+
+ echo -e "
 
   [+] \e[33;1m CCS-INJECTION VULNERABILITY \e[0m
            Powered by Nmap
@@ -61,151 +62,14 @@ if [[ $status == 0 ]] ; then
     echo -e " $host .... [\e[1;32m Connected\e[0m] "
     echo -e "$YELLOW scanning $host for CCS-INJECTION $NOCOLOR"
     sleep 1s
-    nmap -p5432 --script ssl-ccs-injection $host
+    nmap -p 443 --script ssl-ccs-injection $host
 else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
+   echo -e "
+       *****
+   [+] $host     Down[\e[1;31m●\e[0m]"
 fi
+
 }
-
-function cve()
-{
-  echo -e "
-
-  [+] \e[33;1m VULNERABILITY SCANNER \e[0m
-           Powered by nmap
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [\e[1;32m Connected\e[0m] "
-    echo -e "$YELLOW scanning $host for vulnerabilities $NOCOLOR"
-    sleep 1s
-    nmap -sV -sC -vv --script vuln $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
-
-
-xss-par()
-{
-  echo -e "
-
-  [+] \e[33;1m XSS AND PARAMETER ANALYSIS \e[0m
-           Powered by sslscan
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [$GREEN Connected$NOCOLOR ] "
-    echo -e "$YELLOW scanning $host for XSS Parameter $NOCOLOR"
-    sleep 1s
-    nmap -p80 --script http-unsafe-output-escaping $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
-
-
-
-function heart()
-{
-  echo -e "
-
-  [+] \e[33;1m HEARTBLEED VULNERABILITY SCANNER \e[0m
-           Powered by nmap
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [\e[1;32m Connected\e[0m] "
-    echo -e "$YELLOW scanning $host for heartbleed vulnerabilities $NOCOLOR"
-    sleep 1s
-    nmap -d --script ssl-heartbleed --script-args vulns.showall -sV  $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
-
-
-serv()
-{
-  echo -e "
-
-  [+] \e[33;1m SERVICES AND VERSIONS \e[0m
-           Powered by nmap
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [\e[33;1m Connected \e[0m ] "
-    echo -e " scanning \e[33;1m $host  \e[0m  for services & versions \e[0m"
-    sleep 1s
-    nmap -sV $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
-waf()
-{
-  echo -e "
-
-  [+] \e[33;1m WEB APPLICATION FIREWALL \e[0m
-           Powered by nmap
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [\e[33;1m Connected \e[0m ] "
-    echo -e " scanning \e[33;1m $host  \e[0m  for WAF \e[0m"
-    sleep 1s
-    sudo wafw00f $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
-hosts()
-{
-  echo -e "
-
-  [+] \e[33;1m HOST DISCOVERY \e[0m
-           Powered by Netdiscover
-                      \e[1;32m****\e[0m"
-  echo
-  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
-  read host
-ping -c1 -W1 -q $host &>/dev/null
-status=$( echo $? )
-if [[ $status == 0 ]] ; then
-    echo -e " $host .... [\e[33;1m Connected \e[0m ] "
-    echo -e " scanning \e[33;1m $host  \e[0m  for hosts \e[0m"
-    sleep 1s
-   sudo netdiscover -r  $host
-else
-   echo -e " $host ....  [$RED Server Down $NOCOLOR] "
-fi
-}
-
 
 
 while [ $# -gt 0 ]; do
@@ -213,26 +77,8 @@ while [ $# -gt 0 ]; do
     -Help)
       help
       ;;
-    --css-injection)
+    --css)
       css
-      ;;
-    --cve-scanner)
-      cve
-      ;;
-    --xss-vuln)
-      xss-par
-      ;;
-    --heartbleed)
-      heart
-      ;;
-    --services)
-      serv
-      ;;
-    --waf)
-      waf
-      ;;
-    --hostdiscover)
-      hosts
       ;;
 
     *)
