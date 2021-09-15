@@ -37,7 +37,7 @@ function help()
       Options:
 
           --css-injection     |  Scan for CSS Injection Vulnerability
-          --cve-scanner       |  Scan for Common Vulnerability Exposure *NOTE: scan all vulnerabilities available in target*
+          --cve-scanner       |  Scan for Common Vulnerability Exposure(CVE)
           --xss-vuln          |  XSS Vulnerability scanning 
           --heartbleed        |  Scan for SSL-Heartbleed Vulnerability
           --services          |  Scan for Services and Versions
@@ -60,7 +60,7 @@ ping -c1 -W1 -q $host &>/dev/null
 status=$( echo $? )
 if [[ $status == 0 ]] ; then
     echo -e " $host .... [\e[1;32m Connected\e[0m] "
-    echo -e "$YELLOW scanning $host for CCS-INJECTION $NOCOLOR"
+    echo -e "$YELLOW scanning $host for CCS-INJECTION... $NOCOLOR"
     sleep 1s
     nmap -p 443 --script ssl-ccs-injection $host
 else
@@ -70,15 +70,41 @@ else
 fi
 
 }
+#////
+function cve()
+{
+  echo -e "
 
+  [+] \e[33;1m CVE VULNERABILITY SCANNER \e[0m
+           Powered by Nmap
+                      \e[1;32m****\e[0m"
+  echo
+  echo -e -n "   Enter \e[33;1mhost target\e[0m: "
+  read host
+ping -c1 -W1 -q $host &>/dev/null
+status=$( echo $? )
+if [[ $status == 0 ]] ; then
+    echo -e " $host .... [\e[1;32m Connected\e[0m] "
+    echo -e "$YELLOW scanning $host CVE Vulnerabilities ... $NOCOLOR"
+    sleep 1s
+    nmap -sV --script=vulners -v $host
+else
+   echo -e "
+       *****
+   [+] $host     Down[\e[1;31m●\e[0m]"
+fi
+}
 
 while [ $# -gt 0 ]; do
   case "$1" in
     -Help)
       help
       ;;
-    --css)
+    --css-injection)
       css
+      ;;
+    --cve-scanner)
+      cve
       ;;
 
     *)
