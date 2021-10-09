@@ -13,8 +13,8 @@
 #### Features
 
 - CSS Injection Vulnerability scanner
-- XSS Vulnerability scanner
 - CVE Vulnerability Scanner
+- XSS Vulnerability scanner
 - Heartbleed Vulnerability Scanner
 - Services and Version scan
 - Detect WAF
