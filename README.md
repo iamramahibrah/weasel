@@ -11,5 +11,10 @@
 
 
 #### Features
+- [ ] Linux Privilege Escalation tool (linpeas)
+- Usage
+````
+./weasel --prev
+````
 
 
